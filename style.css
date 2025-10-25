@@ -1,0 +1,484 @@
+/* --------------------- GLOBAL TEXT COLOR FIX --------------------- */
+html, body, .stApp, [class*="stMarkdown"], [class*="stText"], [class*="stAlert"], [class*="stDataFrame"] {
+    color: #0f172a !important;  /* Dark navy for good contrast */
+}
+
+
+/* --------------------- APP BACKGROUND --------------------- */
+.stApp {
+    background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* --------------------- NAVBAR BUTTONS --------------------- */
+.nav-btn {
+    color: white !important;
+    background: linear-gradient(90deg, #2563EB, #1E3A8A);
+    border: none;
+    border-radius: 14px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 12px 36px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF);
+    transform: scale(1.07);
+}
+
+/* --------------------- NAVBAR LAYOUT --------------------- */
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 70px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px; /* ✅ Increased spacing between navbar buttons */
+    flex-wrap: wrap; /* ✅ Allows wrapping on smaller screens */
+}
+
+/* --------------------- MAIN TITLES --------------------- */
+.main-title {
+    text-align: center;
+    color: #1e3a8a !important;
+    font-size: 150px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.sub-title {
+    text-align: center;
+    font-size: 42px;
+    color: #0f172a !important;
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+/* --------------------- ABOUT SECTION --------------------- */
+.about-section {
+    background-color: #ffffff;
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    color: #1e293b;
+}
+
+.about-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.about-section h3 {
+    color: #1e3a8a;
+    font-size: 40px;
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.about-section p {
+    font-size: 23px;
+    line-height: 2.1;
+    color: #0f172a;
+}
+
+.about-section ul {
+    padding-left: 2rem;
+    font-size: 22px;
+    line-height: 2.0;
+}
+
+.about-section li {
+    margin-bottom: 14px;
+}
+
+.highlight {
+    color: #1e40af;
+    font-weight: 700;
+}
+
+/* --------------------- FOOTER --------------------- */
+.footer {
+    text-align: center;
+    color: #1f2937;
+    font-size: 15px;
+    margin-top: 70px;
+    opacity: 0.8;
+}
+
+/* --------------------- GET STARTED BUTTON --------------------- */
+.get-started-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: 40px !important;
+}
+
+.get-started-btn {
+    background: linear-gradient(90deg, #2563EB, #1E3A8A);
+    color: white !important;
+    width: 250px;
+    height: 60px;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin : 0 auto !important;  /* Center the button itself */
+    display: block !important;
+}
+
+.get-started-btn:hover {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF);
+    transform: scale(1.07);
+}
+
+/* --------------------- SIDEBAR --------------------- */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #60a5fa, #1e3a8a);
+    color: white !important;
+    padding: 20px;
+}
+
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] span {
+    color: white !important;
+}
+
+[data-testid="stSidebar"] button {
+    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stSidebar"] button:hover {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    transform: scale(1.05);
+}
+
+/* Streamlit input boxes and alerts */
+.stTextInput input, .stNumberInput input, .stAlert {
+    color: #0f172a !important;
+}
+
+/* Make warning/info boxes text visible */
+.stAlert p {
+    color: #0f172a !important;
+}
+
+
+/* --------------------- FIX INVISIBLE TEXT IN LISTS & TABLES --------------------- */
+
+/* Force all Streamlit text, markdown, and dataframe text to dark */
+[class*="stMarkdown"], [class*="stText"], [class*="stDataFrame"], [data-testid="stMarkdownContainer"], div[data-testid="stDataFrame"], div[data-testid="stVerticalBlock"] {
+    color: #0f172a !important;   /* dark navy text */
+}
+
+/* Fix for expander or list items that are light by default */
+.stExpander, .stMarkdown li, .stMarkdown p, .stMarkdown span {
+    color: #0f172a !important;
+}
+
+/* Fix table headers and cell text */
+[data-testid="stDataFrame"] th, [data-testid="stDataFrame"] td {
+    color: #0f172a !important;
+}
+
+/* Ensure buttons in book list remain visible */
+.stButton button {
+    color: white !important;
+    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+
+
+
+/* --------------------- FORM INPUT BOX STYLING --------------------- */
+
+/* Text, number, date, and email inputs */
+.stTextInput input, 
+.stNumberInput input, 
+.stDateInput input, 
+.stTextArea textarea {
+    background-color: #f1f5f9 !important; /* light gray-blue */
+    color: #0f172a !important;            /* dark navy text */
+    border: 1px solid #cbd5e1 !important; /* subtle border */
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+    transition: all 0.3s ease;
+}
+
+.stTextInput input:focus, 
+.stNumberInput input:focus, 
+.stDateInput input:focus, 
+.stTextArea textarea:focus {
+    background-color: #e0f2fe !important; /* lighter focus shade */
+    border-color: #3b82f6 !important;     /* soft blue border */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* Dropdowns */
+.stSelectbox select {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+}
+
+/* File uploader */
+[data-testid="stFileUploaderDropzone"] {
+    background-color: #f1f5f9 !important;
+    border: 2px dashed #93c5fd !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stFileUploaderDropzone"]:hover {
+    background-color: #e0f2fe !important;
+    border-color: #3b82f6 !important;
+}
+
+/* Dropdown expander background fix */
+.stExpander {
+    background-color: #f8fafc !important;
+    border-radius: 12px !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+/* Ensure expander text remains readable */
+.stExpander p, .stExpander span, .stExpander label {
+    color: #0f172a !important;
+}
+
+
+/* --------------------- IMPROVED FORM INPUTS, DROPDOWNS & BUTTONS --------------------- */
+
+/* 🔹 Generic text inputs, number inputs, text areas, date inputs */
+.stTextInput input, 
+.stNumberInput input, 
+.stTextArea textarea,
+.stDateInput input {
+    background-color: #f1f5f9 !important; /* light neutral */
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+    transition: all 0.3s ease;
+}
+
+.stTextInput input:focus, 
+.stNumberInput input:focus, 
+.stTextArea textarea:focus,
+.stDateInput input:focus {
+    background-color: #e0f2fe !important; /* light blue on focus */
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* 🔹 Fix dropdown (Selectbox) background and text color */
+[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stSelectbox"] div[data-baseweb="select"]:hover > div {
+    background-color: #e0f2fe !important;
+    border-color: #3b82f6 !important;
+}
+
+/* 🔹 Dropdown options panel */
+[data-testid="stSelectbox"] ul {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border-radius: 10px !important;
+}
+
+/* 🔹 File uploader area */
+[data-testid="stFileUploaderDropzone"] {
+    background-color: #f1f5f9 !important;
+    border: 2px dashed #93c5fd !important;
+    border-radius: 12px !important;
+    color: #0f172a !important;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stFileUploaderDropzone"]:hover {
+    background-color: #e0f2fe !important;
+    border-color: #3b82f6 !important;
+}
+
+/* 🔹 "Browse files" button inside file uploader */
+[data-testid="stFileUploaderDropzone"] button {
+    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stFileUploaderDropzone"] button:hover {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    transform: scale(1.05);
+}
+
+/* 🔹 Submit / Donation Buttons */
+.stButton > button {
+    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important; /* vibrant blue */
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    padding: 10px 20px !important;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    transform: scale(1.07);
+}
+
+/* 🔹 Expander (Book Details, etc.) background fix */
+.stExpander {
+    background-color: #f8fafc !important;
+    border-radius: 12px !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+.stExpander p, .stExpander span, .stExpander label {
+    color: #0f172a !important;
+}
+/* --------------------- FINAL FIX: Streamlit Buttons (Submit / Donation) --------------------- */
+
+/* General buttons (works both inside and outside forms) */
+div.stButton > button[kind="primary"],
+div.stButton > button,
+form div.stButton > button {
+    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    padding: 10px 24px !important;
+    font-size: 16px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* Hover effect */
+div.stButton > button[kind="primary"]:hover,
+div.stButton > button:hover,
+form div.stButton > button:hover {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    transform: scale(1.06);
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* Fix for text color staying dark */
+div.stButton > button * {
+    color: white !important;
+}
+
+/* --------------------- ABSOLUTE OVERRIDE FOR SUBMIT / DONATION BUTTON --------------------- */
+
+/* Target all buttons including those inside forms */
+button[kind="primary"],
+button[data-testid="baseButton-secondary"],
+button[data-testid="baseButton-primary"],
+div[data-testid="stFormSubmitButton"] button,
+div.stButton button {
+    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    padding: 10px 24px !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Hover effect */
+button[kind="primary"]:hover,
+button[data-testid="baseButton-secondary"]:hover,
+button[data-testid="baseButton-primary"]:hover,
+div[data-testid="stFormSubmitButton"] button:hover,
+div.stButton button:hover {
+    background: linear-gradient(90deg, #1D4ED8, #1E40AF) !important;
+    transform: scale(1.06);
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* --------------------- FIX: MAKE "Login / Signup" TAB TEXT VISIBLE --------------------- */
+
+/* Base styling for tabs */
+div[data-baseweb="tab-list"] button {
+    color: #0f172a !important;               /* dark navy for normal tabs */
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    background-color: #f1f5f9 !important;    /* light background */
+    border-radius: 8px 8px 0 0 !important;
+    padding: 10px 22px !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid #cbd5e1 !important;    /* subtle border */
+}
+
+/* Hover state */
+div[data-baseweb="tab-list"] button:hover {
+    color: #1e3a8a !important;               /* blue hover text */
+    background-color: #e0f2fe !important;
+}
+
+/* Active (selected) tab */
+div[data-baseweb="tab-list"] button[aria-selected="true"] {
+    color: #ffffff !important;               /* white text */
+    background: linear-gradient(90deg, #2563EB, #1E3A8A) !important;
+    border: none !important;
+    box-shadow: 0px -2px 6px rgba(37, 99, 235, 0.3) !important;
+}
+
+
+
+
+/* --------------------- FIX: Dropdown Arrow Blending Issue --------------------- */
+[data-testid="stSelectbox"] svg {
+    fill: #1e3a8a !important;    /* Dark blue arrow for contrast */
+    stroke: #1e3a8a !important;
+    opacity: 1 !important;
+    color: #1e3a8a !important;
+}
+
+/* Optional: When dropdown is focused or hovered, arrow turns brighter */
+[data-testid="stSelectbox"]:hover svg,
+[data-testid="stSelectbox"] div[data-baseweb="select"]:focus-within svg {
+    fill: #2563EB !important;    /* lighter blue when active */
+    stroke: #2563EB !important;
+}
