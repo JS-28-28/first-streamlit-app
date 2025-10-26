@@ -2,22 +2,16 @@ import streamlit as st
 from db_connection import get_connection
 import pandas as pd
 
-
-
-# Apply common CSS
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
 local_css("style.css")
-
 
 st.set_page_config(page_title="Admin Panel", page_icon="🛠️", layout="wide")
 st.title("🛠️ Admin Panel")
 
-# Admin login simple check
 password = st.text_input("Enter Admin Password", type="password")
-if password == "admin123":  # simple password
+if password == "admin123":
     conn = get_connection()
     df_users = pd.read_sql("SELECT * FROM users", conn)
     df_books = pd.read_sql("SELECT * FROM donations", conn)
@@ -29,7 +23,6 @@ if password == "admin123":  # simple password
     ORDER BY r.request_date DESC
     """
     df_requests = pd.read_sql(query_requests, conn)
-
     conn.close()
 
     st.subheader("All Users")
@@ -47,11 +40,15 @@ if password == "admin123":  # simple password
     st.subheader("Delete Donation")
     del_id = st.number_input("Enter Donation ID to Delete", min_value=1, step=1)
     if st.button("Delete"):
-        conn = get_connection()
-        cursor = conn.cursor()
-        cursor.execute("DELETE FROM donations WHERE id=%s", (del_id,))
-        conn.commit()
-        conn.close()
-        st.success(f"Donation ID {del_id} deleted successfully!")
+        try:
+            conn = get_connection()
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM donations WHERE id=?", (del_id,))
+            conn.commit()
+            conn.close()
+            st.success(f"Donation ID {del_id} deleted successfully!")
+        except Exception as e:
+            st.error(f"Database Error: {e}")
 else:
     st.warning("Enter correct admin password to access the panel.")
+
