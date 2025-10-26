@@ -7,7 +7,7 @@ def local_css(file_name):
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 local_css("style.css")
 
-# Logout button
+# Logout
 col1, col2, col3 = st.columns([6,1,1])
 with col3:
     if st.button("🚪 Logout"):
@@ -38,7 +38,7 @@ if st.button("Request Selected Books"):
             conn = get_connection()
             cursor = conn.cursor()
             for book_id in selected_books:
-                cursor.execute("INSERT INTO requests (username, book_id) VALUES (?,?)",
+                cursor.execute("INSERT INTO requests (username, book_id, request_date) VALUES (?,?,datetime('now'))",
                                (st.session_state['user']['username'], book_id))
             conn.commit()
             conn.close()
