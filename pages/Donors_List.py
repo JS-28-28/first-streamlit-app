@@ -22,8 +22,7 @@ st.set_page_config(page_title="Donors List", page_icon="🧑‍🤝‍🧑", lay
 st.title("📋 Donors List")
 
 conn = get_connection()
-df = pd.read_sql("SELECT donor_name, email, phone, donor_type FROM donations", conn)
+df = pd.read_sql("SELECT DISTINCT donor_name, email, phone, donor_type FROM donations", conn)
 conn.close()
 
 st.dataframe(df)
-
