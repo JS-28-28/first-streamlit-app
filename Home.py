@@ -95,3 +95,4 @@ st.markdown("</div>", unsafe_allow_html=True)
 
 # --- FOOTER ---
 st.markdown("<div class='footer'>© Book Bank Project | Developed by JS</div>", unsafe_allow_html=True)
+
