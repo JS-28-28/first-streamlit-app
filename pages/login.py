@@ -1,14 +1,16 @@
 import streamlit as st
 from db_connection import get_connection
 import hashlib
+
 # Apply common CSS
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 local_css("style.css")
+
 # --- PAGE CONFIG ---
-st.set_page_config(page_title="Login / Signup", page_icon="🔑", layout="centered" )
+st.set_page_config(page_title="Login / Signup", page_icon="🔑", layout="centered")
 
 # --- Hash password ---
 def hash_password(password):
@@ -18,7 +20,7 @@ def hash_password(password):
 def login_user(username, password):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT password, user_type FROM users WHERE username=%s", (username,))
+    cursor.execute("SELECT password, user_type FROM users WHERE username=?", (username,))
     result = cursor.fetchone()
     conn.close()
     if result and result[0] == hash_password(password):
@@ -31,7 +33,7 @@ def signup_user(username, email, password, user_type):
     cursor = conn.cursor()
     try:
         cursor.execute(
-            "INSERT INTO users (username, email, password, user_type) VALUES (%s, %s, %s, %s)",
+            "INSERT INTO users (username, email, password, user_type) VALUES (?, ?, ?, ?)",
             (username, email, hash_password(password), user_type.strip().lower())
         )
         conn.commit()
@@ -92,3 +94,5 @@ with tab2:
             st.success("Signup successful! Please login.")
         else:
             st.error("Username or Email already exists.")
+
+
