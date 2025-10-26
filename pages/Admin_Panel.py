@@ -13,6 +13,7 @@ st.title("🛠️ Admin Panel")
 password = st.text_input("Enter Admin Password", type="password")
 if password == "admin123":
     conn = get_connection()
+    
     df_users = pd.read_sql("SELECT * FROM users", conn)
     df_books = pd.read_sql("SELECT * FROM donations", conn)
 
@@ -44,6 +45,7 @@ if password == "admin123":
             conn = get_connection()
             cursor = conn.cursor()
             cursor.execute("DELETE FROM donations WHERE id=?", (del_id,))
+            cursor.execute("DELETE FROM requests WHERE book_id=?", (del_id,))
             conn.commit()
             conn.close()
             st.success(f"Donation ID {del_id} deleted successfully!")
