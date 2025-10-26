@@ -1,15 +1,15 @@
 import streamlit as st
 from db_connection import get_connection
 from datetime import date
+import os
 
-# Apply common CSS
+# CSS
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
 local_css("style.css")
 
-# Logout button
+# Logout
 col1, col2, col3 = st.columns([6,1,1])
 with col3:
     if st.button("🚪 Logout"):
@@ -25,7 +25,7 @@ st.set_page_config(page_title="Book Bank Donation", layout="centered")
 st.title("📚 Book Donation Portal")
 st.write("### Donate your books and help others learn!")
 
-# ---------- Form Inputs ----------
+# Form
 with st.form("donation_form"):
     st.subheader("Donor Information")
     donor_name = st.text_input("Full Name")
@@ -34,7 +34,6 @@ with st.form("donation_form"):
     donor_type = st.selectbox("Donor Type", ["Student", "Faculty", "Businessman", "Other"])
     
     st.subheader("Books Information")
-    
     num_books = st.number_input("How many books do you want to donate?", min_value=1, max_value=10, value=1, step=1)
     
     books = []
@@ -50,12 +49,15 @@ with st.form("donation_form"):
     donation_date = st.date_input("Donation Date", value=date.today())
     submitted = st.form_submit_button("📤 Submit Donation")
 
-# ---------- Insert Data ----------
+# Insert
 if submitted:
     if donor_name and all([b[0] for b in books]):
         try:
             conn = get_connection()
             cursor = conn.cursor()
+            
+            os.makedirs("book_images", exist_ok=True)
+            
             for book in books:
                 book_title, author, genre, condition_status, book_image = book
                 img_path = None
@@ -69,7 +71,7 @@ if submitted:
                     (donor_name, email, phone, donor_type, book_title, author, genre, condition_status, donation_date, book_image)
                     VALUES (?,?,?,?,?,?,?,?,?,?)
                 """
-                values = (donor_name, email, phone, donor_type, book_title, author, genre, condition_status, donation_date, img_path)
+                values = (donor_name, email, phone, donor_type, book_title, author, genre, condition_status, str(donation_date), img_path)
                 cursor.execute(query, values)
             
             conn.commit()
