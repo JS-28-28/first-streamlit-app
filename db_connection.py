@@ -39,7 +39,7 @@ def create_tables(conn):
         genre TEXT,
         condition_status TEXT,
         donation_date TEXT,
-        book_image TEXT
+        book_pdf TEXT
     )
     """)
 
@@ -55,3 +55,7 @@ def create_tables(conn):
     """)
 
     conn.commit()
+
+
+
+
