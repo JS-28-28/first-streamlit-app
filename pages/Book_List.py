@@ -1,6 +1,7 @@
 import streamlit as st
 from db_connection import get_connection
 import pandas as pd
+import os
 
 # ---------- Load custom CSS ----------
 def local_css(file_name):
@@ -47,12 +48,16 @@ for idx, row in df.iterrows():
         selected_books.append(row['id'])
     
     # ✅ Display link to view or download the PDF
-    if row['book_pdf']:
-        st.markdown(
-            f"[📘 View or Download PDF]({row['book_pdf']})",
-            unsafe_allow_html=True
+    if row['book_pdf'] and os.path.exists(row['book_pdf']):
+      with open(row['book_pdf'], "rb") as pdf_file:
+        pdf_data = pdf_file.read()
+        st.download_button(
+            label="📘 Download PDF",
+            data=pdf_data,
+            file_name=os.path.basename(row['book_pdf']),
+            mime="application/pdf",
+            key=f"download_{row['id']}"
         )
-
 # ---------- Book Request Logic ----------
 if st.button("Request Selected Books"):
     if selected_books:
@@ -71,5 +76,4 @@ if st.button("Request Selected Books"):
             st.error(f"Database Error: {e}")
     else:
         st.warning("Please select at least one book to request.")
-
 
