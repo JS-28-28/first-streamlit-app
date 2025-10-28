@@ -43,8 +43,8 @@ with st.form("donation_form"):
         author = st.text_input(f"Author Name {i+1}", key=f"author_{i}")
         genre = st.text_input(f"Genre / Subject {i+1}", key=f"genre_{i}")
         condition_status = st.selectbox(f"Book Condition {i+1}", ["New", "Used - Good", "Used - Average"], key=f"condition_{i}")
-        book_image = st.file_uploader(f"Upload Image of Book {i+1}", type=["png","jpg","jpeg"], key=f"image_{i}")
-        books.append((book_title, author, genre, condition_status, book_image))
+        book_pdf = st.file_uploader(f"Upload PDF of Book {i+1}", type=["pdf"], key=f"pdf_{i}")
+        books.append((book_title, author, genre, condition_status, book_pdf))
     
     donation_date = st.date_input("Donation Date", value=date.today())
     submitted = st.form_submit_button("📤 Submit Donation")
@@ -56,22 +56,22 @@ if submitted:
             conn = get_connection()
             cursor = conn.cursor()
             
-            os.makedirs("book_images", exist_ok=True)
+            os.makedirs("book_pdfs", exist_ok=True)
             
             for book in books:
-                book_title, author, genre, condition_status, book_image = book
-                img_path = None
-                if book_image:
-                    img_path = f"book_images/{book_image.name}"
-                    with open(img_path, "wb") as f:
-                        f.write(book_image.getbuffer())
+                book_title, author, genre, condition_status, book_pdf = book
+                pdf_path = None
+                if book_pdf:
+                    pdf_path = f"book_pdfs/{book_pdf.name}"
+                    with open(pdf_path, "wb") as f:
+                        f.write(book_pdf.getbuffer())
                 
                 query = """
                     INSERT INTO donations
-                    (donor_name, email, phone, donor_type, book_title, author, genre, condition_status, donation_date, book_image)
+                    (donor_name, email, phone, donor_type, book_title, author, genre, condition_status, donation_date, book_pdf)
                     VALUES (?,?,?,?,?,?,?,?,?,?)
                 """
-                values = (donor_name, email, phone, donor_type, book_title, author, genre, condition_status, str(donation_date), img_path)
+                values = (donor_name, email, phone, donor_type, book_title, author, genre, condition_status, str(donation_date), pdf_path)
                 cursor.execute(query, values)
             
             conn.commit()
@@ -81,4 +81,5 @@ if submitted:
             st.error(f"Database Error: {e}")
     else:
         st.warning("Please fill in at least Donor Name and all Book Titles.")
+
 
